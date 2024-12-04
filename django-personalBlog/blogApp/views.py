@@ -1,12 +1,16 @@
-from django.shortcuts import render, redirect
-from .forms import PostForm
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .models import Post
+from .serializers import PostSerializer
+from django.shortcuts import render
 
-def create_post(request):
-    if request.method == 'POST':
-        form = PostForm(request.POST)
-        if form.is_valid():
-            post = form.save()
-            return redirect('post_detail', pk=post.pk) # Redirects to post detail
-    else:
-        form = PostForm() 
-    return render(request, 'create_post.html', {'form': form})
+class PostCreateView(APIView):
+    def post(self, request):
+        serializer = PostSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save() 
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+    
+def index(request):
+    return render(request, 'index.html')

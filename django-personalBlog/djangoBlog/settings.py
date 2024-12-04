@@ -38,7 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'mongoengine',
 ]
+
+MONGODB_SETTINGS = {
+    'DB': 'blogApp_DB',
+    'HOST': 'localhost',  
+    'PORT': 27017,  
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
