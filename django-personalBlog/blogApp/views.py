@@ -1,24 +1,23 @@
-from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Post
 from .serializers import PostSerializer
 from django.shortcuts import render
-from django.http import JsonResponse
+from rest_framework.decorators import api_view
 
-class PostCreateView(APIView):
-    def post(self, request):
+@api_view(['POST'])
+def create_post(request):
+    if request.method == 'POST':
         serializer = PostSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save() 
+            serializer.save()
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
     
+@api_view(['GET'])
 def post_list(request):
-    posts = Post.objects.all()
-    post_data = [
-        {'content': post.content, 'created_at': post.created_at, 'updated_at': post.updated_at} for post in posts
-    ]
-    return JsonResponse(post_data, safe=False)
+    posts = Post.objects.all() # fetches all posts from the database
+    serializer = PostSerializer(posts, many=True)
+    return Response(serializer.data) # returns the serialized data as a JSON response
 
 def index(request):
     return render(request, 'index.html')
