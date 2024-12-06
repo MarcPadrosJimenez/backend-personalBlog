@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 ]
 
 MONGODB_SETTINGS = {
+    'ENGINE': 'django',
     'DB': 'blogApp_DB',
     'HOST': 'localhost',  
     'PORT': 27017,  
