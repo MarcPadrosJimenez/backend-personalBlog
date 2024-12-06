@@ -12,12 +12,6 @@ def create_post(request):
             serializer.save()
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
-    
-@api_view(['GET'])
-def post_list(request):
-    posts = Post.objects.all() # fetches all posts from the database
-    serializer = PostSerializer(posts, many=True)
-    return Response(serializer.data) # returns the serialized data as a JSON response
 
 def index(request):
     return render(request, 'index.html')
