@@ -13,7 +13,7 @@ def create_section(request):
         if created:
             return Response(serializer.data, status=201)
         else:
-            return Response({"message": "Section already exists"}, status=200)
+            return Response({"message": "Section " + section_name + " already exists"}, status=200)
     return Response(serializer.errors, status=400)
 
 @api_view(['POST'])
@@ -21,7 +21,7 @@ def create_post(request, section_name):
     try:
         section = Section.objects.get(name=section_name)
     except Section.DoesNotExist:
-        return Response({"error": "Section not found"}, status=404)
+        return Response({"error": "Section " + section_name + " not found"}, status=404)
     
     data = request.data.copy()
     data['section'] = section.id  # Assigns the ID of the section to the post as its foreign key
@@ -40,7 +40,7 @@ def get_section_posts(request, section_name):
         serializer = PostSerializer(posts, many=True)
         return Response(serializer.data)
     except Section.DoesNotExist:
-        return Response({"error": "Section not found"}, status=404)
+        return Response({"error": "Section " + section_name + " not found"}, status=404)
 
 def index(request):
     return render(request, 'index.html')
