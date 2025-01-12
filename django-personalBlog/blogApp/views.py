@@ -18,7 +18,19 @@ def create_section(request):
 
 @api_view(['POST'])
 def create_post(request):
-    serializer = PostSerializer(data=request.data) # request.data contains the data sent in the request's body
+    section_name = request.data.get('section')
+    if not section_name:
+        return Response({"error": "Section name not provided"}, status=400)
+    
+    try:
+        section = Section.objects.get(name=section_name)
+    except Section.DoesNotExist:
+        return Response({"error": "Section not found"}, status=404)
+    
+    data = request.data.copy()
+    data['section'] = section.id  # Assigns the ID of the section to the post as its foreign key
+    
+    serializer = PostSerializer(data=data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=201)
