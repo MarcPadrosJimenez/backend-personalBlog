@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ma9_@z)cm6g$a%*$1&t^oqr()b6^#1=-d%c!)bma^r@_5j!s_x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]'] # [::1] is the IPv6 equivalent of 127.0.0.1 in ipv4
 
 
 

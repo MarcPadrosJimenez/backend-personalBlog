@@ -8,8 +8,12 @@ from rest_framework.decorators import api_view
 def create_section(request):
     serializer = SectionSerializer(data=request.data)
     if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=201)
+        section_name = serializer.validated_data.get('name')
+        section, created = Section.objects.get_or_create(name=section_name, defaults={'description': serializer.validated_data.get('description', '')})
+        if created:
+            return Response(serializer.data, status=201)
+        else:
+            return Response({"message": "Section already exists"}, status=200)
     return Response(serializer.errors, status=400)
 
 @api_view(['POST'])
