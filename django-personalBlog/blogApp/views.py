@@ -17,11 +17,7 @@ def create_section(request):
     return Response(serializer.errors, status=400)
 
 @api_view(['POST'])
-def create_post(request):
-    section_name = request.data.get('section')
-    if not section_name:
-        return Response({"error": "Section name not provided"}, status=400)
-    
+def create_post(request, section_name):
     try:
         section = Section.objects.get(name=section_name)
     except Section.DoesNotExist:
