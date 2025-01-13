@@ -28,7 +28,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]'] # [::1] is the IPv6 equivalent of 127.0.0.1 in ipv4
 
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -123,12 +122,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
+TIME_ZONE = 'Europe/Madrid'
 USE_TZ = True
-
+USE_I18N = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/

@@ -11,3 +11,6 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = '__all__'
+        extra_kwargs = { # This is used to specify that the section field is not required to be present in the request
+            'section': {'required': False}
+        }
