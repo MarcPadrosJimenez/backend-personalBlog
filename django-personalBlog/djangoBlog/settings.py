@@ -71,7 +71,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:9000",  # Frontend's origin
     "http://127.0.0.1:9000",
-    "https://marcpadrosjimenez.vercel.app/" # production frontend's origin
+    "https://marcpadrosjimenez.vercel.app" # production frontend's origin
 ]
 
 ROOT_URLCONF = 'djangoBlog.urls'
