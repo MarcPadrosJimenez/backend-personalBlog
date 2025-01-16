@@ -32,7 +32,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['MarcPadrosJimenez.pythonanywhere.com','localhost', '127.0.0.1', '[::1]'] # [::1] is the IPv6 equivalent of 127.0.0.1 in ipv4
+ALLOWED_HOSTS = ['marcpadrosjimenez.pythonanywhere.com','localhost', '127.0.0.1', '[::1]'] # [::1] is the IPv6 equivalent of 127.0.0.1 in ipv4
 
 
 # Application definition
